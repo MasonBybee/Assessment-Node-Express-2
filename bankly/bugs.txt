@@ -1,0 +1,21 @@
+BUG #1:
+    POST /auth/login route
+    User.authenticate returns a promise that was not previously awaited and now is
+
+BUG #2:
+    User.getAll
+    removed email, phone from getAll as it should only return username first_name and last_name
+
+BUG #3:
+    middleware/auth.js authUser()
+    using jwt.decode doesnt verify the token, replaced with jwt.verify
+
+BUG #4:
+    PATCH /users/:username
+    prior to fixing this route accepted all fields for user and updated them, this now will throw an error if passed invalid fields
+
+BUG #5:
+    PATCH /users/:username
+    required users to be admin even if they were the right user, requireAdmin taken off middleware
+
+BUG #6: ??? 
