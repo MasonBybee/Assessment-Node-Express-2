@@ -1,21 +1,23 @@
 /** Shared config for application; can be req'd many places. */
 
-require('dotenv');
+require("dotenv").config();
 
-const SECRET_KEY = process.env.SECRET_KEY || 'development-secret-key';
+const SECRET_KEY = process.env.SECRET_KEY || "development-secret-key";
 
 const PORT = +process.env.PORT || 3000;
 
 const BCRYPT_WORK_FACTOR = 10;
 
+const DBLOGIN = process.env.DBLOGIN;
+
 const DB_URI =
-  process.env.NODE_ENV === 'test'
-    ? 'postgresql:///bankly_test'
-    : 'postgresql:///bankly';
+  process.env.NODE_ENV === "test"
+    ? `postgresql://${DBLOGIN}/bankly_test`
+    : `postgresql://${DBLOGIN}/bankly`;
 
 module.exports = {
   BCRYPT_WORK_FACTOR,
   SECRET_KEY,
   PORT,
-  DB_URI
+  DB_URI,
 };
